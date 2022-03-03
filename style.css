@@ -27,12 +27,15 @@ button {
 
 .container {
   margin: 0px;
-  padding-top: 10%;
+  padding: 0px;
   text-align: center;
   height: 100%;
   vertical-align: middle;
 }
-
+.button {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
 .button:hover,
 .nextButton:hover {
   transition: all 0.3s;
@@ -58,7 +61,7 @@ button {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 15%;
+  width: 20%;
 }
 .options.active {
   display: none;
@@ -88,6 +91,7 @@ button {
   animation: fadeAway 3s forwards 1s;
   transform: translateY(0rem);
 }
+
 .points p {
   margin-left: auto;
   margin-right: auto;
@@ -97,14 +101,10 @@ button {
   animation: fadeAway 3s forwards 1s;
   transform: translateY(0rem);
 }
-.pointsIncrease {
+/* .pointsIncrease {
   animation: pointsUpdate 0.5s;
-}
-.highlight {
-  color: green;
-  border: 5px green solid;
-  background-color: green;
-}
+} */
+
 .pointsEndGame {
   animation: pointsSizeIncrease 1s forwards;
 }
@@ -123,9 +123,9 @@ button {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  animation: fadeInUp 3s forwards 2s;
+  animation: fadeInUp 3s forwards 2s, upAndDown 5s alternate infinite 2s;
 }
-.icon {
+/* .icon {
   font-size: 5rem;
   position: absolute;
 }
@@ -138,7 +138,7 @@ button {
   opacity: 0;
   color: green;
   animation: fadeInUp 3s 1s;
-}
+} */
 
 /* .professorImage {
   position: absolute;
@@ -147,11 +147,11 @@ button {
 .professorImage img {
   width: 30%;
 } */
-@keyframes pointsUpdate {
+/* @keyframes pointsUpdate {
   to {
     color: green;
   }
-}
+} */
 @keyframes pointsSizeIncrease {
   to {
     font-size: xx-large;
