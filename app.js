@@ -61,26 +61,45 @@ pokemonQuiz.generateOptions = function () {
     pokemonOptions[i] = randomizer(generatedPokemon);
     pokemonQuiz.checkPreviousAnswers();
 
-    if (pokemonOptions[i] == pokemonOptions[i - 3]) {
-      pokemonOptions[i] = randomizer(generatedPokemon);
-    } else if (pokemonOptions[i] == pokemonOptions[i - 2]) {
-      pokemonOptions[i] = randomizer(generatedPokemon);
-    } else if (pokemonOptions[i] == pokemonOptions[i - 1]) {
-      pokemonOptions[i] = randomizer(generatedPokemon);
+    if (
+      pokemonOptions[0] == pokemonOptions[1] &&
+      pokemonOptions[0] == pokemonOptions[2] &&
+      pokemonOptions[0] == pokemonOptions[3]
+    ) {
+      pokemonOptions[0] = randomizer(generatedPokemon);
+    } else if (
+      pokemonOptions[1] == pokemonOptions[0] &&
+      pokemonOptions[1] == pokemonOptions[2] &&
+      pokemonOptions[1] == pokemonOptions[3]
+    ) {
+      pokemonOptions[1] = randomizer(generatedPokemon);
+    } else if (
+      pokemonOptions[2] == pokemonOptions[0] &&
+      pokemonOptions[2] == pokemonOptions[1] &&
+      pokemonOptions[2] == pokemonOptions[3]
+    ) {
+      pokemonOptions[2] = randomizer(generatedPokemon);
+    } else if (
+      pokemonOptions[3] == pokemonOptions[0] &&
+      pokemonOptions[3] == pokemonOptions[1] &&
+      pokemonOptions[3] == pokemonOptions[2]
+    ) {
+      pokemonOptions[3] = randomizer(generatedPokemon);
     }
   }
 
   correctPokemon = randomizer(pokemonOptions);
+  storeAnswers.push(correctPokemon);
+  console.log(storeAnswers);
 
   pokemonQuiz.retrieveSprites(correctPokemon.url);
   pokemonQuiz.generateButtons(pokemonOptions);
 };
 
 pokemonQuiz.checkPreviousAnswers = function () {
-  console.log(`checking previous answers`);
   // this will check that the generated pokemon has not previously been generated to avoid repeats
   for (j = 0; j <= storeAnswers.length; ++j) {
-    console.log(`check store answers loop ${j}`);
+    // console.log(`check store answers loop ${j}`);
     if (pokemonOptions[0] == storeAnswers[j]) {
       pokemonOptions[0] = randomizer(generatedPokemon);
 
