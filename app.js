@@ -1,6 +1,6 @@
 const pokemonQuiz = {};
 
-const maxNumberOfRounds = 10;
+const maxNumberOfRounds = 20;
 const addPoints = 100;
 const generatedPokemon = [];
 pokemonQuiz.name = {};
@@ -12,6 +12,7 @@ const $answer = $(".answer");
 const $points = $(".points");
 const $progressBar = $(".progressBar");
 const $results = $(".results");
+const $button = $(".button");
 let arrayIndex;
 let correctPokemon;
 let $userAnswer;
@@ -36,15 +37,10 @@ const randomizer = (array) => {
   return array[arrayIndex];
 };
 
-const pokemonRandomizer = () => {
-  const generatedNumber = Math.floor(Math.random() * 151);
-  return generatedNumber;
-};
-
 pokemonQuiz.fetchPokemon = function () {
   $.ajax({
     // set a higher limit for a larger array size
-    url: `https://pokeapi.co/api/v2/pokemon?limit=151`,
+    url: `https://pokeapi.co/api/v2/pokemon?limit=256`,
     method: "GET",
     dataType: "json",
   }).then(function (pokemonData) {
@@ -63,6 +59,7 @@ pokemonQuiz.fetchPokemon = function () {
 pokemonQuiz.generateOptions = function () {
   for (i = 0; i < 4; ++i) {
     pokemonOptions[i] = randomizer(generatedPokemon);
+    pokemonQuiz.checkPreviousAnswers();
 
     if (pokemonOptions[i] == pokemonOptions[i - 3]) {
       pokemonOptions[i] = randomizer(generatedPokemon);
@@ -71,18 +68,25 @@ pokemonQuiz.generateOptions = function () {
     } else if (pokemonOptions[i] == pokemonOptions[i - 1]) {
       pokemonOptions[i] = randomizer(generatedPokemon);
     }
-    // this will check that the generated pokemon has not previously been generated to avoid repeats
-    for (j = 0; j <= storeAnswers.length; ++j) {
-      if (pokemonOptions[i] == storeAnswers[j]) {
-        pokemonOptions[i] = randomizer(generatedPokemon);
-      }
-    }
   }
 
   correctPokemon = randomizer(pokemonOptions);
 
   pokemonQuiz.retrieveSprites(correctPokemon.url);
   pokemonQuiz.generateButtons(pokemonOptions);
+};
+
+pokemonQuiz.checkPreviousAnswers = function () {
+  console.log(`checking previous answers`);
+  // this will check that the generated pokemon has not previously been generated to avoid repeats
+  for (j = 0; j <= storeAnswers.length; ++j) {
+    console.log(`check store answers loop ${j}`);
+    if (pokemonOptions[0] == storeAnswers[j]) {
+      pokemonOptions[0] = randomizer(generatedPokemon);
+
+      console.log("This pokemon has already been assigned, reassigning...");
+    }
+  }
 };
 
 pokemonQuiz.retrieveSprites = function (generatedURL) {
@@ -134,7 +138,7 @@ pokemonQuiz.checkAnswer = () => {
   if (pokemonQuiz.trackProgress.rounds == maxNumberOfRounds) {
     pokemonQuiz.endGame();
   } else {
-    pokemonQuiz.fetchPokemon(pokemonRandomizer());
+    pokemonQuiz.fetchPokemon();
   }
 };
 
