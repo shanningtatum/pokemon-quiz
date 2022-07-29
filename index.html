@@ -13,26 +13,50 @@
     <title>Name The Pokemon</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Who's That Pokemon?</h1>
-      <div class="progressBar"></div>
-      <div class="points">
-        <p>POINTS: 0</p>
+    <!-- HEADER STARTS -->
+    <header>
+      <div class="container">
+        <h1>Who's That Pokemon?</h1>
       </div>
-      <div class="center-container">
+    </header>
+    <!-- HEADER ENDS -->
+    <!-- MAIN STARTS -->
+    <main>
+      <div class="container">
+        <!-- DISPLAY POKEMON IMAGE -->
         <div class="pokemonImage">
-          <div class="pokemon"></div>
+          <div class="pokemon">
+            <!-- render pokemon image -->
+          </div>
         </div>
-        <!-- <div class="answer">
-          <i class="fa-solid fa-circle-xmark wrongIcon icon"></i
-          ><i class="fa-solid fa-circle-check correctIcon icon"></i>
-        </div> -->
+        <!-- DISPLAY BUTTONS AND PROGRESS -->
+        <div class="options">
+          <div class="progressTracker">
+            <div class="outerProgressBar">
+              <div class="progressBar">
+                <!-- RENDER PROGRESS BAR-->
+              </div>
+            </div>
+            <div class="points">
+              <p>POINTS: 0</p>
+            </div>
+          </div>
+          <ul>
+            <!-- RENDER POKEMON OPTIONS -->
+          </ul>
+        </div>
+        <div class="results">
+          <!-- render results -->
+        </div>
+        <button class="nextButton">Try Again?</button>
       </div>
-      <div class="options"></div>
-
-      <div class="results"></div>
-      <button class="nextButton">Try Again?</button>
-    </div>
+    </main>
+    <!-- MAIN ENDS -->
+    <!-- FOOTER STARTS -->
+    <footer>
+      <p>Created by Shannon at Juno College</p>
+    </footer>
+    <!-- FOOTER ENDS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>

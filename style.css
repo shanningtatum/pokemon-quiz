@@ -1,45 +1,157 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Raleway&display=swap");
 
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
 *,
 *::before,
 *::after {
   --yellow: #ffcc00;
   --darkblue: #0a285f;
   --lightblue: #0075be;
+  --white:#fff;
+  --progressBarBg:#f6f5d6;
+  --progressBarInside: #70f7aa;
   box-sizing: border-box;
 }
 
+/* GENERAL STYLINGS */ 
 body {
   text-align: center;
   font-family: "Raleway", sans-serif;
-  background-color: var(--lightblue);
-  color: var(--yellow);
+  color: var(--darkblue);
 }
 
 button {
-  margin: 10px 20px;
-  width: 120px;
+  margin: 10px;
+  width: 200px;
   height: 50px;
   border: 5px var(--darkblue) solid;
   border-radius: 10px;
   transition: all 0.3s;
 }
 
-.container {
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-  height: 100%;
-  vertical-align: middle;
-}
 .button {
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
+
 .button:hover,
 .nextButton:hover {
   transition: all 0.3s;
   background-color: grey;
+}
+
+/* HEADER */
+
+header{
+  display:flex;
+  justify-content: center;
+  height:10vh;
+  background-color:#0075be;
+}
+
+header .container{
+  display:flex;
+  flex-direction:column;
+  max-width:1280px;
+  width:80%;
+  margin:auto;
+}
+
+h1{
+  color:var(--yellow);
+}
+
+/* MAIN */
+
+main{
+  display:flex;
+  justify-content:center;
+  background-image:url('./images/fieldbackground.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat: no-repeat;
+  height:82vh;
+}
+
+main .container {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  height:100%;
+}
+
+/* PROGRESS TRACKER */ 
+.progressTracker{
+  border:3px #4a5f4e solid;
+  background-color:var(--progressBarBg);
+  border-top-left-radius:20px;
+  border-bottom-right-radius:20px;
+  padding:20px 20px 0;
+}
+
+.outerProgressBar{  
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 204px;
+  height: 14px;
+  border: 2px #4a5f4e solid;
+  border-radius: 20px;
+
+}
+.progressBar {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 10px;
+  border: 2px var(--white) solid;
+  background-color:black;
+  border-radius: 20px;
+}
+
+.progressBar::before {
+  content: "";
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: var(--progressBarInside);
+  border-radius:20px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  max-width: 100%;
+}
+
+.progressTracker.active {
+  animation: fadeAway 3s forwards 1s;
+  transform: translateY(0rem);
+}
+
+.points p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.points p.active {
+  animation: fadeAway 3s forwards 1s;
+  transform: translateY(0rem);
+}
+
+.pointsEndGame {
+  animation: pointsSizeIncrease 1s forwards;
+}
+
+/* POKEMON CONTAINER */
+.pokemon{
+  transform: translateY(0rem);
+  animation: upAndDown 1s alternate infinite 2s;
 }
 
 .pokemonImage {
@@ -50,66 +162,39 @@ button {
   margin-left: auto;
   margin-right: auto;
 }
+
 .pokemonImage.active {
   display: none;
 }
-.pokemon {
-  transform: translateY(0rem);
-  animation: upAndDown 1s alternate infinite 2s;
-}
+
 .options {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  width:80%;
+  margin:0 auto;
 }
-.options.active {
+
+.options ul{
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  justify-content: center;
+  flex-wrap:wrap;
+  list-style:none;
+}
+
+.options ul.active {
   display: none;
 }
-.progressBar {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: 200px;
-  height: 10px;
-  border: 2px var(--yellow) solid;
-  border-radius: 20px;
-}
-.progressBar::before {
-  content: "";
-  display: flex;
-  position: absolute;
-  align-items: center;
-  background-color: var(--yellow);
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0%;
-  max-width: 100%;
-}
-.progressBar.active {
-  animation: fadeAway 3s forwards 1s;
-  transform: translateY(0rem);
-}
 
-.points p {
-  margin-left: auto;
-  margin-right: auto;
-  width: 22%;
-}
-.points p.active {
-  animation: fadeAway 3s forwards 1s;
-  transform: translateY(0rem);
-}
-/* .pointsIncrease {
-  animation: pointsUpdate 0.5s;
-} */
-
-.pointsEndGame {
-  animation: pointsSizeIncrease 1s forwards;
-}
 .resultsMessage {
   opacity: 0;
+  background-color:var(--progressBarBg);
+  padding:20px;
+  border:2px #4a5f4e solid;
+  border-radius:10px;
   transform: translateY(3rem);
   animation: fadeInUp 3s forwards 1s;
 }
@@ -121,39 +206,43 @@ button {
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
+
 .nextButton.active {
   display: block;
   margin-left: auto;
   margin-right: auto;
   animation: fadeInUp 3s forwards 2s, upAndDown 5s alternate infinite 2s;
 }
-/* .icon {
-  font-size: 5rem;
-  position: absolute;
-}
-.wrong {
-  opacity: 0;
-  color: red;
-  animation: fadeInUp 3s 1s;
-}
-.correct {
-  opacity: 0;
-  color: green;
-  animation: fadeInUp 3s 1s;
-} */
 
-/* .professorImage {
-  position: absolute;
-  left: 35%;
+/* FOOTER */
+
+footer{
+  background-color:var(--darkblue);
+  height:8vh;
+  padding:20px;
 }
-.professorImage img {
-  width: 30%;
-} */
-/* @keyframes pointsUpdate {
-  to {
-    color: green;
+
+/* MEDIA QUERY */ 
+@media (max-width:500px){
+
+  /* HEADER */
+  header .container{
+    max-width:none;
+    width:100%;
   }
-} */
+
+  .options ul{
+    display:flex;
+  }
+
+  main .container{
+    display:flex;
+    justify-content:space-evenly;
+  }
+}
+
+/* ANIMATION */
+
 @keyframes pointsSizeIncrease {
   to {
     font-size: xx-large;

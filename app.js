@@ -1,6 +1,6 @@
 const pokemonQuiz = {};
 
-const maxNumberOfRounds = 20;
+const maxNumberOfRounds = 5;
 const addPoints = 100;
 const generatedPokemon = [];
 pokemonQuiz.name = {};
@@ -11,6 +11,8 @@ const storeAnswers = [];
 const $answer = $(".answer");
 const $points = $(".points");
 const $progressBar = $(".progressBar");
+const $progressContainer = $(".progressTracker");
+const $outerProgressBar = $(".outerProgressBar");
 const $results = $(".results");
 const $button = $(".button");
 let arrayIndex;
@@ -122,8 +124,8 @@ pokemonQuiz.retrieveSprites = function (generatedURL) {
 pokemonQuiz.generateButtons = function () {
   pokemonOptions.forEach((pokemonGenerated) => {
     $(
-      `<button class="button" type="button">${pokemonGenerated.name.toUpperCase()}</button>`
-    ).appendTo(".options");
+      `<li class="pokemonOption"><button class="button" type="button">${pokemonGenerated.name.toUpperCase()}</button></li>`
+    ).appendTo(".options ul");
   });
 
   pokemonQuiz.addEventListener();
@@ -148,10 +150,10 @@ pokemonQuiz.checkAnswer = () => {
     pokemonQuiz.trackProgress.userPoints =
       pokemonQuiz.trackProgress.userPoints + addPoints;
     $points.html(`<p>POINTS:${pokemonQuiz.trackProgress.userPoints}</p>`);
-    $(".button").remove();
+    $(".pokemonOption").remove();
     event.preventDefault();
   } else {
-    $(".button").remove();
+    $(".pokemonOption").remove();
     event.preventDefault();
   }
   if (pokemonQuiz.trackProgress.rounds == maxNumberOfRounds) {
@@ -162,13 +164,16 @@ pokemonQuiz.checkAnswer = () => {
 };
 
 pokemonQuiz.endGame = () => {
-  $(".options").addClass("active");
+  $(".options ul").addClass("active");
   $(".pokemonImage").addClass("active");
   $points.addClass("pointsEndGame");
   $(".nextButton").addClass("active");
-  $("p").addClass("active");
+  $(".points p").addClass("active");
   $progressBar.addClass("active");
+  $progressContainer.addClass("active");
+  $outerProgressBar.addClass("active");
   $results.addClass("resultsMessage");
+
   $(".nextButton").on("click", function () {
     retryButton();
   });
@@ -202,7 +207,7 @@ const retryButton = () => {
   $progressBar.html(
     `<style> .progressBar:before{width:${pokemonQuiz.trackProgress.progressBarWidth}%} </style>`
   );
-  $(".options").removeClass("active");
+  $(".options ul").removeClass("active");
   $(".pokemonImage").removeClass("active");
   $points.removeClass("pointsEndGame");
   $(".nextButton").removeClass("active");
@@ -210,6 +215,8 @@ const retryButton = () => {
   $results.html("");
   $results.removeClass("resultsMessage");
   $progressBar.removeClass("active");
+  $progressContainer.removeClass("active");
+  $outerProgressBar.removeClass("active");
 
   for (i = 0; i <= storeAnswers.length; i++) {
     storeAnswers.shift();
@@ -219,14 +226,11 @@ const retryButton = () => {
 };
 
 pokemonQuiz.init = function () {
-  console.log("pokemon are being generated...");
   pokemonQuiz.fetchPokemon();
 };
 
 $(() => {
-  // console.log("Document is ready");
   pokemonQuiz.init();
-  // console.log("init has been initialized");
 });
 
 // PSEUDO CODE
