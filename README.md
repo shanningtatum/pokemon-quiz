@@ -12,4 +12,4 @@ Check out the live site <a href="https://shanningtatum.github.io/pokemon-quiz/">
 - CSS3
 - JavaScript
 - jQuery
-- PokeAPI (https://pokeapi.co/)
+- <a href="https://pokeapi.co/">PokeAPI</a>
