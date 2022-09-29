@@ -13,3 +13,8 @@ Check out the live site <a href="https://shanningtatum.github.io/pokemon-quiz/">
 - JavaScript
 - jQuery
 - <a href="https://pokeapi.co/">PokeAPI</a>
+
+## Improvements
+
+- Adding a leaderboard
+- Have users be able to increase the number of rounds they play
