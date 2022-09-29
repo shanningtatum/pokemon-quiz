@@ -1,4 +1,4 @@
-# Juno College & Technology | Intro to JavaScript | Project-1
+# Project 1 | Juno College & Technology | Intro to JavaScript 
 
 ## Summary
 
