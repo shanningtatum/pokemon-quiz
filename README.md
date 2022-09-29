@@ -1,7 +1,15 @@
-# pokemon-quiz
+# Juno College & Technology | Intro to JavaScript | Project-1
 
-This was my first project while attending Juno College & Technology's Intro to JavaScript course. 
+## Summary
 
-It is an application using HTML, CSS, JavaScript, and PokeAPI to randomly generate Pokemon on the screen and 4 choices for user to choose. As they answer the questions correctly, it will add points until the round is over.
+A quiz application that tests your knowledge on Pokemon names based on their images.
 
 Check out the live site <a href="https://shanningtatum.github.io/pokemon-quiz/">here</a>
+
+## Tech Stack
+
+- HTML5
+- CSS3
+- JavaScript
+- jQuery
+- PokeAPI (https://pokeapi.co/)
